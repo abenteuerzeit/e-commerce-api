@@ -1,14 +1,16 @@
 // Database access code goes here
 // Everywhere else in the application, instead of requiring pg directly, require this file
-import { config as _config } from "dotenv";
+import * as dotenv from "dotenv";
+dotenv.config(); 
+
 import { Pool } from "pg";
 
 const config = {
-  user: _config().parsed.USER,
-  host: _config().parsed.HOST,
-  database: _config().parsed.DATABASE,
-  password: _config().parsed.PASSWORD,
-  port: _config().parsed.DB_PORT,
+  user: process.env.USER,
+  host: process.env.HOST,
+  database: process.env.DATABASE,
+  password: process.env.PASSWORD,
+  port: process.env.DB_PORT,
 };
 const pool = new Pool(config);
 

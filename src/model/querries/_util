@@ -1,0 +1,123 @@
+const fs = require("fs");
+const fsPromises = fs.promises;
+const { queryAsync } = require("../index");
+
+fsPromises
+  .opendir(__dirname)
+  .then((result) => {
+    console.log(`FsPromises opened directory path: ${__dirname}`);
+    console.log("FsPromises ran successfully with result:");
+    console.log(result.Dir);
+    return result;
+  })
+  .catch((error) => {
+    console.error(`FsPromises failed with error: ${error}`);
+    return error;
+  });
+
+const readSqlFile = async (path) => {
+  try {
+    const result = await fsPromises.readFile(path, "utf-8", (err, data) => {
+      if (err) {
+        console.error(`Error reading ${path}: ${err}`);
+        throw err;
+      }
+      console.log(`Read ${path} successfully`);
+      console.log(data);
+      return data;
+    });
+    return result;
+  } catch (error) {
+    console.error(`Error reading ${path}: ${error}`);
+    throw error;
+  } finally {
+    fs.close(path);
+    console.log("Done reading file");
+  }
+};
+
+const restartDatabase = async () => {
+  try {
+    const dropDatabaseSQL = await readSqlFile(`${__dirname}/dropDB.sql`)
+      .then(async () => {
+        return await readSqlFile(`${__dirname}/createTables.sql`);
+      })
+      .then(async () => {
+        return await readSqlFile(`${__dirname}/seeder.sql`);
+      })
+      .then(async () => {
+        return [dropDatabaseSQL, createTablesSQL, seedDatabaseSQL].join("\n");
+      });
+    const result = await queryAsync(query);
+    return result;
+  } catch (error) {
+    console.error(`Error restarting database: ${error}`);
+    throw error;
+  }
+};
+
+const dropDatabase = async () => {
+  try {
+    const dropDatabaseSQL = await readSqlFile(`${__dirname}/dropDB.sql`);
+    const result = await queryAsync(dropDatabaseSQL);
+    return result;
+  } catch (error) {
+    console.error(`Error dropping database: ${error}`);
+    throw error;
+  }
+};
+
+const createTables = async () => {
+  try {
+    const createTablesSQL = await readSqlFile(`${__dirname}/createTables.sql`);
+    const result = await queryAsync(createTablesSQL);
+    return result;
+  } catch (error) {
+    console.error(`Error creating tables: ${error}`);
+    throw error;
+  }
+};
+
+const seedDatabase = async () => {
+  try {
+    const seedDatabaseSQL = await readSqlFile(`${__dirname}/seeder.sql`);
+    const result = await queryAsync(seedDatabaseSQL);
+    return result;
+  } catch (error) {
+    console.error(`Error seeding database: ${error}`);
+    throw error;
+  }
+};
+
+module.exports = {
+  restartDatabase,
+  dropDatabase,
+  createTables,
+  seedDatabase,
+};
+
+// import { promises as fs } from 'fs';
+
+// const readSqlFile = async (path) => {
+//     let fileReader = null;
+//   try {
+//     const sql = await fs.readFile(path, 'utf-8', (err, data) => {
+//         if (err) {
+//             console.error(`Error reading ${path}: ${err}`);
+//             throw err;
+//             }
+//         console.log(`Read ${path} successfully`);
+//         console.log(data);
+//         return data;
+//     });
+//     console.log(`Read ${path} successfully`);
+//     console.log(sql);
+//     return sql;
+//   } catch (error) {
+//     console.error(`Error reading ${path}: ${error}`);
+//     throw error;
+//   } finally {
+//     fs.close(path);
+//     console.log('Done reading file');
+//   }
+// };

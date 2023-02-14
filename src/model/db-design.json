@@ -1,0 +1,200 @@
+{
+  "tables": [
+    {
+      "name": "Students",
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "primary_key": true
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "email",
+          "type": "string"
+        },
+        {
+          "name": "phone",
+          "type": "string"
+        },
+        {
+          "name": "objectives",
+          "type": "string"
+        },
+        {
+          "name": "settings",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "Teachers",
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "primary_key": true
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "email",
+          "type": "string"
+        },
+        {
+          "name": "phone",
+          "type": "string"
+        },
+        {
+          "name": "availability",
+          "type": "string"
+        },
+        {
+          "name": "qualifications",
+          "type": "string"
+        },
+        {
+          "name": "rates",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "Lessons",
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "primary_key": true
+        },
+        {
+          "name": "subject",
+          "type": "string"
+        },
+        {
+          "name": "level",
+          "type": "string"
+        },
+        {
+          "name": "duration",
+          "type": "int"
+        },
+        {
+          "name": "availability",
+          "type": "string"
+        },
+        {
+          "name": "price",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Schedules",
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "primary_key": true
+        },
+        {
+          "name": "start_time",
+          "type": "datetime"
+        },
+        {
+          "name": "end_time",
+          "type": "datetime"
+        },
+        {
+          "name": "date",
+          "type": "date"
+        },
+        {
+          "name": "location",
+          "type": "string"
+        },
+        {
+          "name": "availability",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "Bookings",
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "primary_key": true
+        },
+        {
+          "name": "student_id",
+          "type": "int",
+          "foreign_key": true,
+          "references": "Students(id)"
+        },
+        {
+          "name": "teacher_id",
+          "type": "int",
+          "foreign_key": true,
+          "references": "Teachers(id)"
+        },
+        {
+          "name": "lesson_id",
+          "type": "int",
+          "foreign_key": true,
+          "references": "Lessons(id)"
+        },
+        {
+          "name": "schedule_id",
+          "type": "int",
+          "foreign_key": true,
+          "references": "Schedules(id)"
+        },
+        {
+          "name": "payment_id",
+          "type": "int",
+          "foreign_key": true,
+          "references": "Payments(id)"
+        },
+        {
+          "name": "notes",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "Payments",
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "primary_key": true
+        },
+        {
+          "name": "booking_id",
+          "type": "int",
+          "foreign_key": true,
+          "references": "Bookings(id)"
+        },
+        {
+          "name": "amount",
+          "type": "int"
+        },
+        {
+          "name": "payment_method",
+          "type": "string"
+        },
+        {
+          "name": "payment_date",
+          "type": "date"
+        }
+      ]
+    }
+  ]
+}
