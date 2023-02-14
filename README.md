@@ -102,55 +102,55 @@ The API endpoints that will be used in retrieving data from the database:
 
 #### For Teachers:
 
-POST /lessons: Create a new lesson for a student, including booking and payment info.
-PUT /lessons/:id: Update an existing lesson for a student, including booking and payment info.
-DELETE /lessons/:id: Delete a lesson for a student, including booking and payment info.
-For Students:
+- POST /lessons: Create a new lesson for a student, including booking and payment info.
+- PUT /lessons/:id: Update an existing lesson for a student, including booking and payment info.
+- DELETE /lessons/:id: Delete a lesson for a student, including booking and payment info.
+- For Students:
 
-GET /lessons: Get a list of all upcoming lessons for the student.
-GET /lessons/:id: Get details for a specific lesson, including booking and payment info.
-POST /payments: Submit a new payment for a specific lesson.
-GET /payments: Get a list of all past payments for the student.
-GET /payments/:id: Get details for a specific payment.
+- GET /lessons: Get a list of all upcoming lessons for the student.
+- GET /lessons/:id: Get details for a specific lesson, including booking and payment info.
+- POST /payments: Submit a new payment for a specific lesson.
+- GET /payments: Get a list of all past payments for the student.
+- GET /payments/:id: Get details for a specific payment.
 
 #### For authentication and authorization:
 
-POST /login: Authenticate a user and return a session token.
-POST /logout: Invalidate the current session token and log out the user.
-POST /register: Create a new user account with appropriate roles and permissions.
+- POST /login: Authenticate a user and return a session token.
+- POST /logout: Invalidate the current session token and log out the user.
+- POST /register: Create a new user account with appropriate roles and permissions.
 
 #### Student Authentication Endpoints
 
-POST /api/student/login
-POST /api/student/register
-POST /api/student/forgot_password
-POST /api/student/reset_password
+- POST /api/student/login
+- POST /api/student/register
+- POST /api/student/forgot_password
+- POST /api/student/reset_password
 
 #### Teacher Authentication Endpoints
 
-POST /api/teacher/login
-POST /api/teacher/register
-POST /api/teacher/forgot_password
-POST /api/teacher/reset_password
+- POST /api/teacher/login
+- POST /api/teacher/register
+- POST /api/teacher/forgot_password
+- POST /api/teacher/reset_password
 
 #### Lesson Creation Endpoints
 
-POST /api/lesson (for teacher to create a lesson)
+- POST /api/lesson (for teacher to create a lesson)
 
 #### Lesson Booking Endpoints
 
-GET /api/availability?teacher_id=<teacher_id>&date=<date> (to get available slots for a selected teacher in a given date)
-POST /api/booking (for student to book a lesson)
-PATCH /api/booking/<booking_id> (for student to update a booking)
-DELETE /api/booking/<booking_id> (for student to cancel a booking)
+- GET /api/availability?teacher_id=<teacher_id>&date=<date> (to get available slots for a selected teacher in a - given date)
+- POST /api/booking (for student to book a lesson)
+- PATCH /api/booking/<booking_id> (for student to update a booking)
+- DELETE /api/booking/<booking_id> (for student to cancel a booking)
 
 #### Payment Endpoints
 
-POST /api/payment (for student to make a payment)
-GET /api/payment/<payment_id> (to get payment details)
-Calendar Endpoints
-GET /api/calendar/student (to get student's past and upcoming lessons)
-GET /api/calendar/teacher (to get teacher's past and upcoming lessons)
+- POST /api/payment (for student to make a payment)
+- GET /api/payment/<payment_id> (to get payment details)
+- Calendar Endpoints
+- GET /api/calendar/student (to get student's past and upcoming lessons)
+- GET /api/calendar/teacher (to get teacher's past and upcoming lessons)
 
 ### Set up user registration
 
