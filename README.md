@@ -25,10 +25,71 @@ This is a fully-functioning e-commerce application REST API that allows users to
 - PostgreSQL
 
 ## DONE
-
+ 
 ### Setup version control
 
 Set up Git tracking in your directory with `git init` and make sure to add and commit changes as you make them.
+
+#### Semantic Commit Messages
+
+Semantic commit messages have been implemented to document your changes. The commit message should be structured as follows:
+
+    <type>[optional scope]: <description>
+
+    [optional body]
+
+    [Optional footer]
+
+The commit message consists of a header, a body, and a footer. The header is mandatory and the scope of the header is optional. The body and footer are optional and should be used to clarify the commit if necessary.
+
+The header is the most important part of the commit message. It contains a succinct description of the change. The header is a single line that contains a type, an optional scope, and a description.
+
+The type is contained within the header and can be one of these types:
+
+- feat: a new feature
+- fix: a bug fix
+- docs: changes to documentation
+- style: formatting, missing semi colons, etc; no code change
+- refactor: refactoring production code
+- test: adding tests, refactoring test; no production code change
+- chore: updating build tasks, package manager configs, etc; no production code change
+
+The scope is contained within parenthesis after the type and describes the affected code. For example, `(users)`.
+The description is a short description of the change.
+
+The body should include the motivation for the change and contrast this with previous behavior.
+
+The footer should contain any information about Breaking Changes and is also the place to reference GitHub issues that this commit Closes.
+
+Example commit messages for each type:
+
+    feat: create a new user endpoint /api/users
+
+    feat(users): create a new user endpoint /api/users
+
+    fix: fix a bug in the login endpoint
+
+    fix(users): fix a HTTP status code in the login endpoint
+
+    docs: add `change` to the README
+
+    docs(users): update users documentation
+
+    style: fix formatting in the login endpoint
+
+    style(users): fix formatting in the login endpoint
+
+    refactor: refactor the login endpoint
+
+    refactor(users): refactor the login endpoint
+
+    test: add tests for the login endpoint
+
+    test(users): add tests for updating a user
+
+    chore: update dependencies
+
+    chore(users): update dependencies
 
 ### Setup an express server
 
